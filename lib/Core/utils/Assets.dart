@@ -5,4 +5,5 @@ class AssetsDate {
   static String choose = 'assets/images/image 2.png';
   static String fire = 'assets/images/image 3.png';
   static String cold = 'assets/images/image 4.png';
+  static String tomato = 'assets/images/image 5.png';
 }
