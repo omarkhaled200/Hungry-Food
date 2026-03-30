@@ -41,6 +41,7 @@ class HomeHeader extends StatelessWidget {
               ),
             ],
           ),
+          Gap(20),
         ],
       ),
     );

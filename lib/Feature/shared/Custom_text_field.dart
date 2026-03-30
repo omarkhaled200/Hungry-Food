@@ -11,6 +11,7 @@ class CustomTextfield extends StatefulWidget {
     required this.obscure,
     this.validator,
     this.onchange,
+    this.prefixicon,
   });
   final String hinttext;
   final Color hintcolor;
@@ -18,6 +19,7 @@ class CustomTextfield extends StatefulWidget {
   final bool obscure;
   final String? Function(String?)? validator;
   final void Function(String)? onchange;
+  final Widget? prefixicon;
 
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
@@ -60,7 +62,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           filled: true,
           hintStyle: TextStyle(color: widget.hintcolor),
           hintText: widget.hinttext,
-
+          prefixIcon: widget.prefixicon,
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
