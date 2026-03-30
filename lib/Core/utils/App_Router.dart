@@ -4,11 +4,13 @@ import 'package:hungry_food/Feature/Auth/presentation/views/Login_Views/login_vi
 import 'package:hungry_food/Feature/Auth/presentation/views/SignUp_views/Sign_up_view.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Home_view.dart';
 import 'package:hungry_food/Feature/Splash/presentation/views/Splash_Screen.dart';
+import 'package:hungry_food/root.dart';
 
 abstract class AppRouter {
   static final khomeview = '/khomeview';
   static final kloginview = '/kloginview';
   static final ksignupview = '/ksignupview';
+  static final kroot = '/kroot';
 
   static final router = GoRouter(
     routes: [
@@ -45,6 +47,19 @@ abstract class AppRouter {
           return CustomTransitionPage(
             key: state.pageKey,
             child: LoginView(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+      GoRoute(
+        path: kroot,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: Root(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
                   return FadeTransition(opacity: animation, child: child);

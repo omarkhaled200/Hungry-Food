@@ -113,7 +113,7 @@ class LoginViewBody extends StatelessWidget {
                   backcolor: Colors.white,
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
-                      print("login successfully");
+                      GoRouter.of(context).push(AppRouter.kroot);
                     }
                   },
                 ),
