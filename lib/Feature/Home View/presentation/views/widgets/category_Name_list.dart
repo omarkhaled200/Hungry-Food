@@ -35,13 +35,14 @@ class _CategoryNameListState extends State<CategoryNameList> {
                     selectedindex = index;
                   });
                 },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                   decoration: BoxDecoration(
                     color: selectedindex == index
                         ? AppColors.kprimarycolor
                         : Colors.grey[300],
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
                     child: Text(

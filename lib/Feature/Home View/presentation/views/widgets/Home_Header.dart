@@ -30,13 +30,13 @@ class HomeHeader extends StatelessWidget {
                   CustomText(
                     text: "Hello, Omar",
                     size: 15,
-                    color: Colors.black87,
+                    color: Colors.grey.shade500,
                     weight: FontWeight.w500,
                   ),
                 ],
               ),
               ClipRRect(
-                borderRadius: BorderRadiusGeometry.circular(8),
+                borderRadius: BorderRadiusGeometry.circular(12),
                 child: Image.asset(AssetsDate.profile),
               ),
             ],

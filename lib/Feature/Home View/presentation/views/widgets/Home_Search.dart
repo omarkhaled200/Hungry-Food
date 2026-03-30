@@ -15,15 +15,15 @@ class HomeSearch extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 1,
-                  blurRadius: 30,
-                  offset: Offset(0, 0),
+                  color: Colors.black.withOpacity(0.15),
+
+                  blurRadius: 20,
+                  offset: Offset(0, 5),
                 ),
               ],
             ),
             child: CustomTextfield(
-              hinttext: "Search",
+              hinttext: "Search..",
               hintcolor: Colors.black,
               textcolor: Colors.black,
               obscure: false,
