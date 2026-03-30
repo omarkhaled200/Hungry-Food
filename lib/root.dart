@@ -35,7 +35,7 @@ class _RootState extends State<Root> {
         items: [
           Icon(CupertinoIcons.house_fill, size: 25, color: Colors.white),
           Icon(CupertinoIcons.cart_fill, size: 25, color: Colors.white),
-          Icon(CupertinoIcons.bag_fill, size: 25, color: Colors.white),
+          Icon(Icons.local_restaurant_outlined, size: 25, color: Colors.white),
           Icon(CupertinoIcons.person_fill, size: 25, color: Colors.white),
         ],
       ),
