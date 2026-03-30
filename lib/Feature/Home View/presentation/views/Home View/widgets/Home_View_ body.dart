@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_food/Core/utils/Assets.dart';
 
-import 'package:hungry_food/Feature/Home%20View/presentation/views/widgets/Home_Header.dart';
-import 'package:hungry_food/Feature/Home%20View/presentation/views/widgets/Home_Search.dart';
-import 'package:hungry_food/Feature/Home%20View/presentation/views/widgets/category_Name_list.dart';
-import 'package:hungry_food/Feature/Home%20View/presentation/views/widgets/custom_products_grid_view.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/widgets/Home_Header.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/widgets/Home_Search.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/widgets/category_Name_list.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/widgets/custom_products_grid_view.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class HomeViewBody extends StatefulWidget {

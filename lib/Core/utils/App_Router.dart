@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Feature/Auth/presentation/views/Login_Views/login_view.dart';
 import 'package:hungry_food/Feature/Auth/presentation/views/SignUp_views/Sign_up_view.dart';
-import 'package:hungry_food/Feature/Home%20View/presentation/views/Home_view.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/Home_view.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/Product_Detial_view.dart';
 import 'package:hungry_food/Feature/Splash/presentation/views/Splash_Screen.dart';
 import 'package:hungry_food/root.dart';
 
@@ -11,6 +12,7 @@ abstract class AppRouter {
   static final kloginview = '/kloginview';
   static final ksignupview = '/ksignupview';
   static final kroot = '/kroot';
+  static final kproductdetials = '/kproductdetials';
 
   static final router = GoRouter(
     routes: [
@@ -34,6 +36,19 @@ abstract class AppRouter {
           return CustomTransitionPage(
             key: state.pageKey,
             child: HomeView(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+      GoRoute(
+        path: kproductdetials,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: ProductDetialView(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
                   return FadeTransition(opacity: animation, child: child);

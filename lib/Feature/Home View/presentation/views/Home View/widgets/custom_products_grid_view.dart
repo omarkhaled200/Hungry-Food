@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hungry_food/Feature/Home%20View/presentation/views/widgets/custom_Product_Card_item.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/widgets/custom_Product_Card_item.dart';
 
 class CustomProductsGridView extends StatelessWidget {
   const CustomProductsGridView({super.key});
