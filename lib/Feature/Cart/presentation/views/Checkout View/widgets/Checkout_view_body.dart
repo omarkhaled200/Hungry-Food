@@ -64,7 +64,7 @@ class _CheckoutViewbodyState extends State<CheckoutViewbody> {
                 buttontext: "Pay Now",
                 onpressed: () {
                   ischecked
-                      ? GoRouter.of(context).push(AppRouter.khomeview)
+                      ? GoRouter.of(context).push(AppRouter.ksuccessview)
                       : null;
                 },
               ),

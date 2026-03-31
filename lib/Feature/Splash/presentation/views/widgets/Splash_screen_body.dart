@@ -11,14 +11,18 @@ class SplashScreenBody extends StatefulWidget {
   State<SplashScreenBody> createState() => _SplashScreenBodyState();
 }
 
-class _SplashScreenBodyState extends State<SplashScreenBody> {
+class _SplashScreenBodyState extends State<SplashScreenBody>
+    with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidinganimation;
 
   @override
   void initState() {
     super.initState();
-
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
     navigateToHomeViews();
   }
 
