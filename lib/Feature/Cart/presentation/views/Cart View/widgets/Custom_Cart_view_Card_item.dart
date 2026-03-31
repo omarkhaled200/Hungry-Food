@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_food/Core/utils/Assets.dart';
-import 'package:hungry_food/Feature/Cart/presentation/views/widgets/Custom_increment_Decrement_Btn.dart';
+import 'package:hungry_food/Feature/Cart/presentation/views/Cart%20View/widgets/Custom_increment_Decrement_Btn.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class CustomCartViewCartItem extends StatelessWidget {

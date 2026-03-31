@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Feature/Cart/presentation/views/Cart_view.dart';
+import 'package:hungry_food/Feature/Cart/presentation/views/Cart%20View/Cart_view.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Home%20View/Home_view.dart';
 import 'package:hungry_food/Feature/Order/presentation/views/Order_view.dart';
 import 'package:hungry_food/Feature/profile/presentation/views/Profile_view.dart';
