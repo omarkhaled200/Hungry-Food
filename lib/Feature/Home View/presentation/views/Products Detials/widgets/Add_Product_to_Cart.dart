@@ -3,9 +3,10 @@ import 'package:hungry_food/Core/constants/app_colors.dart';
 import 'package:hungry_food/Feature/shared/CustomButton.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
-class AddProductToCart extends StatelessWidget {
-  const AddProductToCart({super.key});
-
+class ButtonAction extends StatelessWidget {
+  const ButtonAction({super.key, required this.buttontext, this.onpressed});
+  final String buttontext;
+  final void Function()? onpressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,9 +36,9 @@ class AddProductToCart extends StatelessWidget {
             backcolor: AppColors.kprimarycolor,
             width: 250,
             heaight: 90,
-            text: "Add to Cart",
+            text: buttontext,
             textcolor: Colors.white,
-            onPressed: () {},
+            onPressed: onpressed,
           ),
         ],
       ),

@@ -20,7 +20,10 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: true),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -52,7 +55,7 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
               ),
               CustomListViewproductinfo(),
               Gap(20),
-              AddProductToCart(),
+              ButtonAction(buttontext: "Add to Cart", onpressed: () {}),
             ],
           ),
         ),

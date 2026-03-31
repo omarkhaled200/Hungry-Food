@@ -52,9 +52,21 @@ class _ProdcutInfoState extends State<ProdcutInfo> {
               Row(
                 children: [
                   Spacer(flex: 1),
-                  Image.asset(AssetsDate.cold),
+
+                  CustomText(
+                    text: '🥶',
+                    size: 13,
+                    color: Colors.white,
+                    weight: FontWeight.w500,
+                  ),
                   Spacer(flex: 5),
-                  Image.asset(AssetsDate.fire),
+                  CustomText(
+                    text: '🌶️',
+                    size: 13,
+                    color: Colors.white,
+                    weight: FontWeight.w500,
+                  ),
+
                   Spacer(flex: 1),
                 ],
               ),
