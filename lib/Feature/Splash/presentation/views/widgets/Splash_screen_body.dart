@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hungry_food/Core/utils/App_Router.dart';
+import 'package:hungry_food/Core/utils/app_router.dart';
 import 'package:hungry_food/Core/utils/Assets.dart';
 
 class SplashScreenBody extends StatefulWidget {
@@ -95,7 +95,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
 
   void navigateToHomeViews() {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).push(AppRouter.ksignupview);
+      GoRouter.of(context).push(AppRouter.kroot);
     });
   }
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Core/utils/App_Router.dart';
+
 import 'package:hungry_food/Feature/Auth/presentation/views/SignUp_views/widgets/CustomSingUpTextFields.dart';
-import 'package:hungry_food/Feature/shared/CustomButton.dart';
+
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
-import 'package:hungry_food/Feature/shared/Custom_text_field.dart';
-import 'package:hungry_food/Feature/shared/Valdiater.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});

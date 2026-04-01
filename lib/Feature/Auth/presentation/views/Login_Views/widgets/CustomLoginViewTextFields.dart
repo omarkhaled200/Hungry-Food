@@ -1,54 +1,34 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:flutter/material.dart';
-
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
+import 'package:hungry_food/Core/utils/app_router.dart';
 import 'package:hungry_food/Feature/shared/CustomButton.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 import 'package:hungry_food/Feature/shared/Custom_text_field.dart';
 import 'package:hungry_food/Feature/shared/Valdiater.dart';
 
-class CustomSingUpTextFields extends StatelessWidget {
-  const CustomSingUpTextFields({super.key, required this.formkey});
+class CustomLoginViewTextFields extends StatelessWidget {
+  const CustomLoginViewTextFields({super.key, required this.formkey});
+
   final GlobalKey<FormState> formkey;
   @override
   Widget build(BuildContext context) {
     String? email;
-    String? username;
     String? password;
-    String? confirmpassword;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.kprimarycolor,
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
             topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
+          color: AppColors.kprimarycolor,
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Gap(30),
-              CustomTextfield(
-                onchange: (data) {
-                  username = data;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your Name';
-                  } else {
-                    return null;
-                  }
-                },
-                obscure: false,
-                hinttext: 'User name',
-                hintcolor: AppColors.kprimarycolor,
-                textcolor: AppColors.kprimarycolor,
-              ),
-              Gap(20),
+              Gap(50),
               CustomTextfield(
                 onchange: (data) {
                   email = data;
@@ -91,44 +71,21 @@ class CustomSingUpTextFields extends StatelessWidget {
                 textcolor: AppColors.kprimarycolor,
               ),
               Gap(20),
-              CustomTextfield(
-                onchange: (data) {
-                  confirmpassword = data;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please Enter your Confirm password';
-                  }
-                  if (value != password) {
-                    return 'Confirm password not match password';
-                  }
-                  if (!valdiate().valdiatepassword(password: password) ||
-                      !valdiate().valdiatepassword(password: password)) {
-                    return 'Please enter a valid password';
-                  } else {
-                    return null;
-                  }
-                },
-                obscure: true,
-                hinttext: 'confirm password',
-                hintcolor: AppColors.kprimarycolor,
-                textcolor: AppColors.kprimarycolor,
-              ),
-              Gap(20),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomText(
-                      text: "already have account? ",
+                      text: "Create an account? ",
                       size: 13,
                       color: Colors.white,
                       weight: FontWeight.w500,
                     ),
                     GestureDetector(
-                      onTap: () => GoRouter.of(context).pop(),
+                      onTap: () =>
+                          GoRouter.of(context).push(AppRouter.ksignupview),
                       child: CustomText(
-                        text: "Login",
+                        text: "Register",
                         size: 13,
                         color: Colors.blueGrey,
                         weight: FontWeight.w500,
@@ -142,10 +99,12 @@ class CustomSingUpTextFields extends StatelessWidget {
                 textcolor: Colors.black,
                 width: 300,
                 heaight: 100,
-                text: "Register",
+                text: "Login",
                 backcolor: Colors.white,
                 onPressed: () {
-                  if (formkey.currentState!.validate()) {}
+                  if (formkey.currentState!.validate()) {
+                    GoRouter.of(context).push(AppRouter.kroot);
+                  }
                 },
               ),
             ],

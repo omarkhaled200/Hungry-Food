@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Core/utils/Assets.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Add_Product_to_Cart.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Custom_list_View_ingredients.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Prodcut_Info.dart';
-import 'package:hungry_food/Feature/shared/CustomButton.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class ProductDetialsViewbody extends StatefulWidget {
@@ -55,10 +52,25 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
               ),
               CustomListViewproductinfo(),
               Gap(20),
-              ButtonAction(buttontext: "Add to Cart", onpressed: () {}),
+
+              const Gap(120),
             ],
           ),
         ),
+      ),
+
+      bottomSheet: Container(
+        height: 120,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+          color: Colors.white,
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+          // borderRadius:
+        ),
+        child: ButtonAction(buttontext: "Add to Cart", onpressed: () {}),
       ),
     );
   }

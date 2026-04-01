@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hungry_food/Core/utils/App_Router.dart';
+import 'package:hungry_food/Core/utils/app_router.dart';
 
 void main() {
   runApp(const MyApp());

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Core/utils/App_Router.dart';
+import 'package:hungry_food/Core/utils/app_router.dart';
 import 'package:hungry_food/Core/utils/Assets.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
