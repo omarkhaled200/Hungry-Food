@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hungry_food/Core/utils/App_Router.dart';
-import 'package:hungry_food/Core/utils/Assets.dart';
+
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Custom_Check_box.dart';
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Order_Summary.dart';
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Payment_Methods.dart';
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Total_Price_Summary.dart';
+import 'package:hungry_food/Feature/Cart/presentation/views/Success%20View/widgets/SuccessViewBody.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Add_Product_to_Cart.dart';
+
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class CheckoutViewbody extends StatefulWidget {
@@ -63,9 +64,7 @@ class _CheckoutViewbodyState extends State<CheckoutViewbody> {
               ButtonAction(
                 buttontext: "Pay Now",
                 onpressed: () {
-                  ischecked
-                      ? GoRouter.of(context).push(AppRouter.ksuccessview)
-                      : null;
+                  ischecked ? showSuccessDialog(context) : null;
                 },
               ),
             ],
