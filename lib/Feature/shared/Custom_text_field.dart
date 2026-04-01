@@ -12,6 +12,7 @@ class CustomTextfield extends StatefulWidget {
     this.validator,
     this.onchange,
     this.prefixicon,
+    this.backcolor = Colors.white,
   });
   final String hinttext;
   final Color hintcolor;
@@ -20,7 +21,7 @@ class CustomTextfield extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function(String)? onchange;
   final Widget? prefixicon;
-
+  final Color? backcolor;
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
 }
@@ -58,7 +59,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 )
               : null,
 
-          fillColor: Colors.white,
+          fillColor: widget.backcolor,
           filled: true,
           hintStyle: TextStyle(color: widget.hintcolor),
           hintText: widget.hinttext,

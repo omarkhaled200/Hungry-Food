@@ -14,44 +14,80 @@ class SplashScreenBody extends StatefulWidget {
 class _SplashScreenBodyState extends State<SplashScreenBody>
     with TickerProviderStateMixin {
   late AnimationController animationController;
-  late Animation<Offset> slidinganimation;
+
+  late Animation<Offset> textSlide;
+  late Animation<double> textFade;
+  late Animation<double> logoScale;
 
   @override
   void initState() {
     super.initState();
+
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
+
+    // Slide من تحت لفوق
+    textSlide = Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        );
+
+    // Fade للنص
+    textFade = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+
+    // تكبير اللوجو
+    logoScale = Tween<double>(begin: 0.5, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.elasticOut),
+    );
+
+    animationController.forward();
+
     navigateToHomeViews();
   }
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+
     return Center(
       child: Column(
         children: [
           Gap(height * 0.25),
-          Text(
-            'Hungry?',
-            style: TextStyle(
-              fontFamily: "LuckiestGuy",
-              fontSize: 60,
-              color: Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Spacer(),
 
-          Image.asset(AssetsDate.logo, height: 350),
+          // 🟢 النص بالأنيميشن
+          FadeTransition(
+            opacity: textFade,
+            child: SlideTransition(
+              position: textSlide,
+              child: const Text(
+                'Hungry?',
+                style: TextStyle(
+                  fontFamily: "LuckiestGuy",
+                  fontSize: 60,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+
+          const Spacer(),
+
+          // 🟢 اللوجو بالأنيميشن
+          ScaleTransition(
+            scale: logoScale,
+            child: Image.asset(AssetsDate.logo, height: 350),
+          ),
         ],
       ),
     );
@@ -59,7 +95,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
 
   void navigateToHomeViews() {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).push(AppRouter.kroot);
+      GoRouter.of(context).push(AppRouter.ksignupview);
     });
   }
 }

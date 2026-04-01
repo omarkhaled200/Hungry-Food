@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
 import 'package:hungry_food/Core/utils/App_Router.dart';
+import 'package:hungry_food/Feature/Auth/presentation/views/SignUp_views/widgets/CustomSingUpTextFields.dart';
 import 'package:hungry_food/Feature/shared/CustomButton.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 import 'package:hungry_food/Feature/shared/Custom_text_field.dart';
@@ -15,149 +16,34 @@ class SignUpViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     @override
     final GlobalKey<FormState> formkey = GlobalKey();
-    String? email;
-    String? username;
-    String? password;
-    String? confirmpassword;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: AppColors.kprimarycolor,
         body: Form(
           key: formkey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Gap(100),
-                Text(
-                  'Hungry?',
-                  style: TextStyle(
-                    fontFamily: "LuckiestGuy",
-                    fontSize: 60,
-                    color: Colors.white,
-                  ),
+          child: Column(
+            children: [
+              Gap(100),
+              Text(
+                'Hungry?',
+                style: TextStyle(
+                  fontFamily: "LuckiestGuy",
+                  fontSize: 60,
+                  color: AppColors.kprimarycolor,
                 ),
-                CustomText(
-                  text: 'Welcome back,Discover the fast food ❤️',
-                  size: 13,
-                  color: Colors.white,
-                  weight: FontWeight.w500,
-                ),
-                Gap(50),
-                CustomTextfield(
-                  onchange: (data) {
-                    username = data;
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your Name';
-                    }
-                  },
-                  obscure: false,
-                  hinttext: 'User name',
-                  hintcolor: AppColors.kprimarycolor,
-                  textcolor: AppColors.kprimarycolor,
-                ),
-                Gap(20),
-                CustomTextfield(
-                  onchange: (data) {
-                    email = data;
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email like  ......@org.com';
-                    }
-                    if (!valdiate().valdiateemail(email: email) ||
-                        !valdiate().valdiateemail(email: email)) {
-                      return 'Please enter a valid email';
-                    }
-                  },
-                  obscure: false,
-                  hinttext: 'Email',
-                  hintcolor: AppColors.kprimarycolor,
-                  textcolor: AppColors.kprimarycolor,
-                ),
-                Gap(20),
-                CustomTextfield(
-                  onchange: (data) {
-                    password = data;
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please  Enter your password';
-                    }
-                    if (!valdiate().valdiatepassword(password: password) ||
-                        !valdiate().valdiatepassword(password: password)) {
-                      return 'It must contain at least one uppercase letter (e.g., A, B, C...)\nIt must contain at least one lowercase letter (e.g., a, b, c...) \nIt must contain at least one number (e.g., 0, 1, 2...).\nIt must contain at least one special character (e.g., !, @, #, &, *, ~).\nIt must be at least 8 characters long';
-                    }
-                  },
-                  obscure: true,
-                  hinttext: 'password',
-                  hintcolor: AppColors.kprimarycolor,
-                  textcolor: AppColors.kprimarycolor,
-                ),
-                Gap(20),
-                CustomTextfield(
-                  onchange: (data) {
-                    confirmpassword = data;
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please Enter your Confirm password';
-                    }
-                    if (value != password) {
-                      return 'Confirm password not match password';
-                    }
-                    if (!valdiate().valdiatepassword(password: password) ||
-                        !valdiate().valdiatepassword(password: password)) {
-                      return 'Please enter a valid password';
-                    }
-                  },
-                  obscure: true,
-                  hinttext: 'confirm password',
-                  hintcolor: AppColors.kprimarycolor,
-                  textcolor: AppColors.kprimarycolor,
-                ),
-                Gap(20),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText(
-                        text: "already have account? ",
-                        size: 13,
-                        color: Colors.white,
-                        weight: FontWeight.w500,
-                      ),
-                      GestureDetector(
-                        onTap: () => GoRouter.of(context).pop(),
-                        child: CustomText(
-                          text: "Login",
-                          size: 13,
-                          color: Colors.blueGrey,
-                          weight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(20),
-                CustomButton(
-                  textcolor: Colors.black,
-                  width: 300,
-                  heaight: 100,
-                  text: "Register",
-                  backcolor: Colors.white,
-                  onPressed: () {
-                    if (formkey.currentState!.validate()) {
-                      print("login successfully");
-                    }
-                  },
-                ),
-              ],
-            ),
+              ),
+              CustomText(
+                text: 'Welcome back,Discover the fast food ❤️',
+                size: 13,
+                color: AppColors.kprimarycolor,
+                weight: FontWeight.w500,
+              ),
+              Gap(50),
+              CustomSingUpTextFields(formkey: formkey),
+            ],
           ),
         ),
       ),

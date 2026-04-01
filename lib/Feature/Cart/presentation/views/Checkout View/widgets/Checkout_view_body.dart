@@ -6,7 +6,7 @@ import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widg
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Order_Summary.dart';
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Payment_Methods.dart';
 import 'package:hungry_food/Feature/Cart/presentation/views/Checkout%20View/widgets/Total_Price_Summary.dart';
-import 'package:hungry_food/Feature/Cart/presentation/views/Success%20View/widgets/SuccessViewBody.dart';
+import 'package:hungry_food/Feature/Cart/presentation/views/Success%20View/SuccessViewBody.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Add_Product_to_Cart.dart';
 
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
