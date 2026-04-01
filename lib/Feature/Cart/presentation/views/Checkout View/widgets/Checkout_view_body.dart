@@ -61,14 +61,24 @@ class _CheckoutViewbodyState extends State<CheckoutViewbody> {
                 },
               ),
               Gap(50),
-              ButtonAction(
-                buttontext: "Pay Now",
-                onpressed: () {
-                  ischecked ? showSuccessDialog(context) : null;
-                },
-              ),
             ],
           ),
+        ),
+      ),
+      bottomSheet: Container(
+        height: 120,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+          color: Colors.white,
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+          // borderRadius:
+        ),
+        child: ButtonAction(
+          buttontext: "Pay Now",
+          onpressed: () => ischecked ? showSuccessDialog(context) : null,
         ),
       ),
     );
