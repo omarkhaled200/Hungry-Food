@@ -13,6 +13,7 @@ class CustomTextfield extends StatefulWidget {
     this.onchange,
     this.prefixicon,
     this.backcolor = Colors.white,
+    this.bordercolor = Colors.white,
   });
   final String hinttext;
   final Color hintcolor;
@@ -22,6 +23,7 @@ class CustomTextfield extends StatefulWidget {
   final void Function(String)? onchange;
   final Widget? prefixicon;
   final Color? backcolor;
+  final Color? bordercolor;
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
 }
@@ -65,16 +67,16 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           hintText: widget.hinttext,
           prefixIcon: widget.prefixicon,
           disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: widget.bordercolor!),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: widget.bordercolor!),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: widget.bordercolor!),
           ),
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: widget.bordercolor!),
           ),
         ),
       ),
