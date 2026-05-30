@@ -25,7 +25,18 @@ class CustomProductCarditem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(child: Image.asset(AssetsDate.product, width: 120)),
+              Center(
+                child: Stack(
+                  children: [
+                    Positioned(
+                      bottom: -5,
+                      child: Image.asset(AssetsDate.shadow, width: 120),
+                    ),
+
+                    Image.asset(AssetsDate.product, width: 120),
+                  ],
+                ),
+              ),
               Gap(5),
               CustomText(
                 text: "Cheeseburger",

@@ -7,4 +7,5 @@ class AssetsDate {
   static String visa = 'assets/images/image 4.png';
 
   static String tomato = 'assets/images/image 5.png';
+  static String shadow = 'assets/images/Ellipse 1.png';
 }
