@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/data.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Add_Product_to_Cart.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Custom_list_View_ingredients.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Prodcut_Info.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class ProductDetialsViewbody extends StatefulWidget {
-  const ProductDetialsViewbody({super.key});
-
+  const ProductDetialsViewbody({super.key, required this.product});
+  final Data product;
   @override
   State<ProductDetialsViewbody> createState() => _ProductDetialsViewbodyState();
 }
@@ -28,7 +29,18 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap(20),
-              ProdcutInfo(),
+              ProdcutInfo(product: widget.product),
+              Gap(20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: CustomText(
+                  text:
+                      'Customize Your Burger to Your Tastes. Ultimate Experience 🍔🍴',
+                  size: 15,
+                  color: Colors.grey,
+                  weight: FontWeight.w600,
+                ),
+              ),
               Gap(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

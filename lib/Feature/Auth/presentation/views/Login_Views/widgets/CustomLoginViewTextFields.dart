@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
+import 'package:hungry_food/Core/utils/CustomScaffoldMessenger.dart';
 import 'package:hungry_food/Core/utils/app_router.dart';
+import 'package:hungry_food/Feature/Auth/presentation/views/Login_Views/View_model/cubit/user_login_cubit.dart';
 import 'package:hungry_food/Feature/shared/CustomButton.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 import 'package:hungry_food/Feature/shared/Custom_text_field.dart';
@@ -16,101 +20,128 @@ class CustomLoginViewTextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     String? email;
     String? password;
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          color: AppColors.kprimarycolor,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Gap(50),
-              CustomTextfield(
-                onchange: (data) {
-                  email = data;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email like  ......@org.com';
-                  }
-                  if (!valdiate().valdiateemail(email: email) ||
-                      !valdiate().valdiateemail(email: email)) {
-                    return 'Please enter a valid email';
-                  } else {
-                    return null;
-                  }
-                },
-                obscure: false,
-                hinttext: 'Email',
-                hintcolor: AppColors.kprimarycolor,
-                textcolor: AppColors.kprimarycolor,
+    return BlocConsumer<UserLoginCubit, UserLoginState>(
+      listener: (context, state) {
+        if (state is UserLoginFailure) {
+          CustomScaffoldMessenger(
+            context,
+            "Error is : ${state.errmessage}",
+            FontAwesomeIcons.circleXmark,
+            Colors.red,
+          );
+        } else if (state is UserLoginSuccess) {
+          CustomScaffoldMessenger(
+            context,
+            'Success',
+            Icons.check_circle_outline,
+            Colors.green,
+          );
+          GoRouter.of(
+            context,
+          ).push(AppRouter.kroot, extra: {'userdata': state.user});
+        }
+      },
+      builder: (context, state) {
+        return Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
-              Gap(20),
-              CustomTextfield(
-                onchange: (data) {
-                  password = data;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please  Enter your password';
-                  }
-                  if (!valdiate().valdiatepassword(password: password) ||
-                      !valdiate().valdiatepassword(password: password)) {
-                    return 'It must contain at least one uppercase letter (e.g., A, B, C...)\nIt must contain at least one lowercase letter (e.g., a, b, c...) \nIt must contain at least one number (e.g., 0, 1, 2...).\nIt must contain at least one special character (e.g., !, @, #, &, *, ~).\nIt must be at least 8 characters long';
-                  } else {
-                    return null;
-                  }
-                },
-                obscure: true,
-                hinttext: 'password',
-                hintcolor: AppColors.kprimarycolor,
-                textcolor: AppColors.kprimarycolor,
-              ),
-              Gap(20),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      text: "Create an account? ",
-                      size: 13,
-                      color: Colors.white,
-                      weight: FontWeight.w500,
+              color: AppColors.kprimarycolor,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Gap(50),
+                  CustomTextfield(
+                    onchange: (data) {
+                      email = data;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email like  ......@org.com';
+                      }
+                      if (!valdiate().valdiateemail(email: email) ||
+                          !valdiate().valdiateemail(email: email)) {
+                        return 'Please enter a valid email';
+                      } else {
+                        return null;
+                      }
+                    },
+                    obscure: false,
+                    hinttext: 'Email',
+                    hintcolor: AppColors.kprimarycolor,
+                    textcolor: AppColors.kprimarycolor,
+                  ),
+                  Gap(20),
+                  CustomTextfield(
+                    onchange: (data) {
+                      password = data;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please  Enter your password';
+                      }
+                      if (!valdiate().valdiatepassword(password: password) ||
+                          !valdiate().valdiatepassword(password: password)) {
+                        return 'It must contain at least one uppercase letter (e.g., A, B, C...)\nIt must contain at least one lowercase letter (e.g., a, b, c...) \nIt must contain at least one number (e.g., 0, 1, 2...).\nIt must contain at least one special character (e.g., !, @, #, &, *, ~).\nIt must be at least 8 characters long';
+                      } else {
+                        return null;
+                      }
+                    },
+                    obscure: true,
+                    hinttext: 'password',
+                    hintcolor: AppColors.kprimarycolor,
+                    textcolor: AppColors.kprimarycolor,
+                  ),
+                  Gap(20),
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomText(
+                          text: "Create an account? ",
+                          size: 13,
+                          color: Colors.white,
+                          weight: FontWeight.w500,
+                        ),
+                        GestureDetector(
+                          onTap: () =>
+                              GoRouter.of(context).push(AppRouter.ksignupview),
+                          child: CustomText(
+                            text: "Register",
+                            size: 13,
+                            color: Colors.blueGrey,
+                            weight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      onTap: () =>
-                          GoRouter.of(context).push(AppRouter.ksignupview),
-                      child: CustomText(
-                        text: "Register",
-                        size: 13,
-                        color: Colors.blueGrey,
-                        weight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  Gap(20),
+                  CustomButton(
+                    textcolor: Colors.black,
+                    width: 300,
+                    heaight: 100,
+                    text: "Login",
+                    backcolor: Colors.white,
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        context.read<UserLoginCubit>().UserLogin(
+                          email: email!,
+                          password: password!,
+                        );
+                      }
+                    },
+                  ),
+                ],
               ),
-              Gap(20),
-              CustomButton(
-                textcolor: Colors.black,
-                width: 300,
-                heaight: 100,
-                text: "Login",
-                backcolor: Colors.white,
-                onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    GoRouter.of(context).push(AppRouter.kroot);
-                  }
-                },
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

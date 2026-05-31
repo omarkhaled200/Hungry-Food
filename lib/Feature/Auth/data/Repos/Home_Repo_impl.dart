@@ -20,13 +20,18 @@ class HomeRepoImpl extends AuthHomeRepo {
         endpoint: 'login',
         body: {'email': email, 'password': password},
       );
-
-      // تحقق إذا كانت البيانات ليست null وأيضاً من نوع Map<String, dynamic>
       if (data != null && data is Map<String, dynamic>) {
-        if (data.containsKey('token')) {
-          String token = data['token'];
+        final userData = data['data'];
+
+        if (userData != null &&
+            userData is Map<String, dynamic> &&
+            userData.containsKey('token')) {
+          String token = userData['token'];
+
           await saveToken(token);
-          LoginModel user = LoginModel.fromJson(data);
+
+          LoginModel user = LoginModel.fromJson(userData);
+
           return right(user);
         } else {
           return left(ServerFailure('Missing token or user data in response'));
@@ -51,7 +56,7 @@ class HomeRepoImpl extends AuthHomeRepo {
   }) async {
     try {
       var data = await apiClass.post(
-        endpoint: 'login',
+        endpoint: 'register',
         body: {
           'email': Email,
           'password': password,
@@ -62,10 +67,11 @@ class HomeRepoImpl extends AuthHomeRepo {
 
       // تحقق إذا كانت البيانات ليست null وأيضاً من نوع Map<String, dynamic>
       if (data != null && data is Map<String, dynamic>) {
-        if (data.containsKey('token')) {
-          String token = data['token'];
+        final userData = data['data'];
+        if (userData.containsKey('token')) {
+          String token = userData['token'];
           await saveToken(token);
-          RegisterModel user = RegisterModel.fromJson(data);
+          RegisterModel user = RegisterModel.fromJson(userData);
           return right(user);
         } else {
           return left(ServerFailure('Missing token or user data in response'));

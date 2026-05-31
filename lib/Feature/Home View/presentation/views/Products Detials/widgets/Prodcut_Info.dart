@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Core/utils/Assets.dart';
+
+import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/data.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class ProdcutInfo extends StatefulWidget {
-  const ProdcutInfo({super.key});
-
+  const ProdcutInfo({super.key, required this.product});
+  final Data product;
   @override
   State<ProdcutInfo> createState() => _ProdcutInfoState();
 }
@@ -17,7 +18,7 @@ class _ProdcutInfoState extends State<ProdcutInfo> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(AssetsDate.choose, height: 300),
+        Image.network(widget.product.image!, height: 150),
         Gap(10),
         Expanded(
           child: Column(
@@ -25,8 +26,7 @@ class _ProdcutInfoState extends State<ProdcutInfo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text:
-                    'Customize Your Burger \n to Your Tastes.\n Ultimate Experience',
+                text: widget.product.description!,
                 size: 15,
                 color: Colors.black,
                 weight: FontWeight.w400,

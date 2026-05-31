@@ -5,16 +5,17 @@ import 'package:go_router/go_router.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
 import 'package:hungry_food/Core/utils/app_router.dart';
 import 'package:hungry_food/Core/utils/Assets.dart';
+import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/data.dart';
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class CustomProductCarditem extends StatelessWidget {
-  const CustomProductCarditem({super.key});
-
+  const CustomProductCarditem({super.key, required this.product});
+  final Data product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kproductdetials);
+        GoRouter.of(context).push(AppRouter.kproductdetials, extra: product);
       },
       child: Card(
         color: Colors.white,
@@ -26,26 +27,33 @@ class CustomProductCarditem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Stack(
-                  children: [
-                    Positioned(
-                      bottom: -5,
-                      child: Image.asset(AssetsDate.shadow, width: 120),
-                    ),
-
-                    Image.asset(AssetsDate.product, width: 120),
-                  ],
+                child: SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned(
+                        bottom: 0,
+                        child: Image.asset(AssetsDate.shadow, width: 120),
+                      ),
+                      Image.network(product.image!, width: 120),
+                    ],
+                  ),
                 ),
               ),
               Gap(5),
-              CustomText(
-                text: "Cheeseburger",
-                size: 15,
-                color: Colors.black,
-                weight: FontWeight.w500,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: CustomText(
+                  text: product.name!,
+                  size: 15,
+                  color: Colors.black,
+                  weight: FontWeight.w500,
+                ),
               ),
               CustomText(
-                text: "Wendy's Burger",
+                text: "${product.price!} \$",
                 size: 13,
                 color: Colors.black,
                 weight: FontWeight.w400,
@@ -58,7 +66,7 @@ class CustomProductCarditem extends StatelessWidget {
                     children: [
                       Icon(Icons.star, color: Colors.amber, size: 20),
                       CustomText(
-                        text: "4.9",
+                        text: product.rating!,
                         size: 15,
                         color: Colors.black,
                         weight: FontWeight.w500,
