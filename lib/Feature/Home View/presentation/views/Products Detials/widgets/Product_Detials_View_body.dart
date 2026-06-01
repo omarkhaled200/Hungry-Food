@@ -1,7 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_food/Core/utils/api_class.dart';
+import 'package:hungry_food/Feature/Home%20View/data/Repos/Home_Repo_impl.dart';
 import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/data.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/View_Model/Get%20Side-option/get_side_option_cubit.dart';
+import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/View_Model/Get%20Topping%20Cubit/get_topping_cubit.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Add_Product_to_Cart.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Custom_list_View_ingredients.dart';
 import 'package:hungry_food/Feature/Home%20View/presentation/views/Products%20Detials/widgets/Prodcut_Info.dart';
@@ -51,7 +58,29 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
                   weight: FontWeight.w600,
                 ),
               ),
-              CustomListViewproductinfo(),
+              BlocProvider(
+                create: (context) =>
+                    GetToppingCubit(HomeRepoImpl(ApiClass(Dio())))
+                      ..gettopping(),
+                child: BlocBuilder<GetToppingCubit, GetToppingState>(
+                  builder: (context, state) {
+                    if (state is GetToppingSuccess) {
+                      return CustomListViewproductinfo(
+                        type: 'topping',
+                        topping: state.product,
+                      );
+                    }
+
+                    if (state is GetToppingFailure) {
+                      return const SizedBox.shrink();
+                    }
+
+                    return const Center(
+                      child: SpinKitFadingCircle(color: Colors.black),
+                    );
+                  },
+                ),
+              ),
               Gap(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -62,7 +91,30 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
                   weight: FontWeight.w600,
                 ),
               ),
-              CustomListViewproductinfo(),
+              BlocProvider(
+                create: (context) =>
+                    GetSideOptionCubit(HomeRepoImpl(ApiClass(Dio())))
+                      ..getSideOption(),
+                child: BlocBuilder<GetSideOptionCubit, GetSideOptionState>(
+                  builder: (context, state) {
+                    if (state is GetSideOptionSuccess) {
+                      return CustomListViewproductinfo(
+                        type: 'sideoption',
+                        sideoption: state.product,
+                      );
+                    }
+
+                    if (state is GetSideOptionFailure) {
+                      return const SizedBox.shrink();
+                    }
+
+                    return const Center(
+                      child: SpinKitFadingCircle(color: Colors.black),
+                    );
+                  },
+                ),
+              ),
+
               Gap(20),
 
               const Gap(120),
@@ -82,7 +134,11 @@ class _ProductDetialsViewbodyState extends State<ProductDetialsViewbody> {
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
           // borderRadius:
         ),
-        child: ButtonAction(buttontext: "Add to Cart", onpressed: () {}),
+        child: ButtonAction(
+          buttontext: "Add to Cart",
+          onpressed: () {},
+          product: widget.product,
+        ),
       ),
     );
   }

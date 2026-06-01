@@ -4,9 +4,11 @@ import 'package:hungry_food/Core/error/failure.dart';
 import 'package:hungry_food/Core/utils/api_class.dart';
 import 'package:hungry_food/Feature/Home%20View/data/Repos/Home_Repo.dart';
 import 'package:hungry_food/Feature/Home%20View/data/models/get_all_category_model/datum.dart';
-import 'package:hungry_food/Feature/Home%20View/data/models/get_all_product_model/get_all_product_model..dart';
 import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/data.dart';
 import 'package:hungry_food/Feature/Home%20View/data/models/get_product_by_id_model/get_product_by_id_model.dart';
+import 'package:hungry_food/Feature/Home%20View/data/models/search_product_model/search_product_model.dart';
+import 'package:hungry_food/Feature/Home%20View/data/models/side_option_model/side_option_model.dart';
+import 'package:hungry_food/Feature/Home%20View/data/models/topping_model/topping_model.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final ApiClass apiClass;
@@ -61,6 +63,62 @@ class HomeRepoImpl extends HomeRepo {
       }
 
       return right(product);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, SearchProductModel>> searchproduct({
+    required String name,
+  }) async {
+    try {
+      var data = await apiClass.get(endpoint: 'products?name=$name');
+
+      SearchProductModel product = SearchProductModel.fromJson(data);
+
+      return right(product);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<SideOptionModel>>> getsideoption() async {
+    try {
+      var data = await apiClass.get(endpoint: 'side-options');
+
+      List<SideOptionModel> sideoption = [];
+      for (var item in data['data']) {
+        sideoption.add(SideOptionModel.fromJson(item));
+      }
+
+      return right(sideoption);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ToppingModel>>> gettopping() async {
+    try {
+      var data = await apiClass.get(endpoint: 'toppings');
+
+      List<ToppingModel> topping = [];
+      for (var item in data['data']) {
+        topping.add(ToppingModel.fromJson(item));
+      }
+
+      return right(topping);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

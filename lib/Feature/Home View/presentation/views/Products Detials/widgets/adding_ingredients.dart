@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_food/Core/constants/app_colors.dart';
-import 'package:hungry_food/Core/utils/Assets.dart';
+
 import 'package:hungry_food/Feature/shared/Custom_text.dart';
 
 class Addingingredientsitem extends StatefulWidget {
-  const Addingingredientsitem({super.key});
-
+  const Addingingredientsitem({super.key, required this.product});
+  final dynamic product;
   @override
   State<Addingingredientsitem> createState() =>
       _AddingToppingsandsideoptionitemState();
@@ -38,7 +38,7 @@ class _AddingToppingsandsideoptionitemState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: "Tomato",
+                      text: widget.product.name!,
                       size: 15,
                       color: Colors.white,
                       weight: FontWeight.w500,
@@ -84,7 +84,7 @@ class _AddingToppingsandsideoptionitemState
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Image.asset(AssetsDate.tomato),
+            child: Image.network(widget.product.image!),
           ),
         ),
       ],
